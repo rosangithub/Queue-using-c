@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 3
+int queue[MAX];
+int r = -1, f = -1;
+void enqueue(int);
+void dequeue();
+void display();
+
+int main()
+{
+    int choice;
+    int data;
+    while (1)
+    {
+
+        printf("\n enter 1 for enqueue\n ");
+        printf("enter 2 for dequeue\n");
+        printf("enter 3 for display\n");
+        printf("enter 4 for exit\n");
+        printf("enter any number\n");
+
+        scanf("%d", &choice);
+        // fflush(stdin);
+        switch (choice)
+        {
+        case 1:
+
+            printf("enter the data  you want to add in the queue:\n");
+            scanf("%d", &data);
+            enqueue(data);
+            break;
+        case 2:
+            dequeue();
+            break;
+        case 3:
+            display();
+            break;
+        case 4:
+            exit(0);
+        default:
+            printf("your choice is wrong\n");
+        }
+    }
+    return 0;
+}
+void enqueue(int a)
+{
+
+    if (r == MAX - 1)
+    {
+        printf("queue overflow\n");
+    }
+    else if (r == -1 && f == -1)
+    {
+        r = 0;
+        f = 0;
+        queue[r] = a;
+    }
+    else
+    {
+        r++;
+        queue[r] = a;
+    }
+}
+void dequeue()
+{
+    if (r == -1 && f == -1)
+    {
+        printf("queue underflow\n");
+    }
+    else if (r = f)
+    {
+        printf("%d",queue[r]);
+        r = -1;
+        f = -1;
+    }
+    else
+    {
+        int r;
+        r = queue[f];
+        printf("the dequeued value id %d :", r);
+        f++;
+    }
+}
+void display()
+{
+    int i;
+    printf("the entered queue value are as follows:");
+    for (i = f; i <= r; i++)
+    {
+        printf("%d ", queue[i]);
+    }
+   // printf("%d", queue[i]);
+}
